@@ -1,0 +1,19 @@
+{
+    "name": "client",
+    "version": "0.0.1",
+    "workspaces": [
+        "./"
+    ],
+    "author": {
+        "email": "bna19u134@student.bmstu.ru",
+        "name": "Бахрамов Никита"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "license": "ISC",
+    "proxy": "http://localhost:5001",
+    "dependencies": {
+        "express": "^4.18.1"
+    }
+}
