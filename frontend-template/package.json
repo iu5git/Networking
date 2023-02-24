@@ -1,0 +1,59 @@
+{
+    "name": "iu5-networking-template",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@fontsource/roboto": "^4.5.8",
+        "@mui/icons-material": "^5.11.0",
+        "@mui/material": "^5.11.8",
+        "@reduxjs/toolkit": "^1.9.2",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^16.18.12",
+        "@types/react": "^18.0.28",
+        "@types/react-animations": "^1.0.0",
+        "@types/react-dom": "^18.0.11",
+        "cross-env": "^7.0.3",
+        "miragejs": "^0.1.47",
+        "react": "^18.2.0",
+        "react-animations": "^1.0.0",
+        "react-dom": "^18.2.0",
+        "react-query": "^3.39.3",
+        "react-redux": "^8.0.5",
+        "react-toastify": "^9.1.1",
+        "react-scripts": "5.0.1",
+        "typescript": "^4.9.5",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "lint": "eslint src",
+        "format": "prettier --write .",
+        "start:stub-server": "cross-env REACT_APP_STUB_SERVER=true react-scripts start",
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
