@@ -41,8 +41,7 @@
 - Необходимо реализовать приложение на React + Redux Toolkit + Axios + MUI. Необходимо реализовать окно регистрации и авторизации. Приложение должно общаться с веб-сервису с данными, а при отсутствии подключения - отображать Mock-объекты (можно использовать Service Worker)
 
 - [Инструкция по Figma MUI](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf)
-- [Пример реализации приложения React](https://github.com/iu5git/web-2022/blob/main/tutorials/lab4/lab4_tutorial.md)
-- [Пример использования Redux](https://github.com/iu5git/web-2022/blob/main/tutorials/redux/redux_toolkit.md)
+- [Пример реализации фронтенд](/frontend-template)
 
 2. **Бэкенд + QA**: 
  
@@ -402,3 +401,5 @@
 1. Коновалов Максим Владиславович
 2. Балабанов Алексей Олегович
 3. Торжков Максим Сергеевич
+4. Панов Герман Дмитриевич
+5. Ткаченко Владислав Львович
