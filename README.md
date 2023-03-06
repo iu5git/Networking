@@ -41,9 +41,9 @@
 
 - Документация: РП (руководство пользователя), часть РПЗ. Диаграммы прецедентов, диаграмма последовательности запросов и действий.
 - Необходимо реализовать приложение на React + Redux Toolkit + Axios + MUI. Необходимо реализовать окно регистрации и авторизации. Приложение должно общаться с веб-сервису с данными, а при отсутствии подключения - отображать Mock-объекты (можно использовать Service Worker)
-
-- [Инструкция по Figma MUI](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf)
 - [Пример реализации фронтенд](/frontend-template)
+- [Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI. [Видеоуроки](https://www.youtube.com/watch?v=DWicd2qo2pk) по Figma
+
 
 2. **Бэкенд + QA**: 
  
