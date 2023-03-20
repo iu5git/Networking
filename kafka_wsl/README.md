@@ -72,7 +72,7 @@ C:/kafka_2.12-3.2.0/bin/windows/kafka-server-start.bat C:/kafka_2.12-3.2.0/confi
 3. Из библиотеки рекомендую использовать следующие методы _from kafka import KafkaProducer, KafkaConsumer_
 4. Пример функции отправки сообщения в кафку
 
-```
+``` python
 def sendKafka():
     my_producer = KafkaProducer(
         bootstrap_servers=['localhost:29092'],
@@ -88,7 +88,7 @@ def sendKafka():
 
 5. Пример функции получения сообщения из кафки
 
-```
+``` python
 def getKafka():
     consumer = KafkaConsumer('testnum',
                              bootstrap_servers=['localhost:29092'],
