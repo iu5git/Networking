@@ -62,3 +62,41 @@ C:/kafka_2.12-3.2.0/bin/windows/kafka-server-start.bat C:/kafka_2.12-3.2.0/confi
 также можно проверить через *docker ps*
 
 #### Готово. Успешной работы!
+
+# Пример работы с Кафкой
+
+Перед началом работы ознакомьтесь с [документацией](https://kafka-python.readthedocs.io/en/master/)
+
+1. Необходимо создать проект в pyCharm
+2. Вам понадобитмя библиотека для работы с кафкой _pip install kafka-python_
+3. Из библиотеки рекомендую использовать следующие методы _from kafka import KafkaProducer, KafkaConsumer_
+4. Пример функции отправки сообщения в кафку
+
+```
+def sendKafka():
+    my_producer = KafkaProducer(
+        bootstrap_servers=['localhost:29092'],
+        value_serializer=lambda x: dumps(x).encode('utf-8')
+    )
+
+    message = "1"
+    while message != "0":
+        message = input("Type your message: ")
+        my_producer.send("testnum", value=message)
+        getKafka()
+```
+
+5. Пример функции получения сообщения из кафки
+
+```
+def getKafka():
+    consumer = KafkaConsumer('testnum',
+                             bootstrap_servers=['localhost:29092'],
+                             group_id='test',
+                             auto_offset_reset='earliest')
+    for msg in consumer:
+        res_str = msg.value.decode("utf-8")
+        print("Text:", res_str)
+```
+
+//В интернете можно найти более примитивные примеры
