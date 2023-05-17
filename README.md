@@ -16,6 +16,8 @@
 - 12 неделя: полный комплект документов (ТЗ, РПЗ, ПМИ, РП, РСА, диаграммы последовательности/деятельности для каждого участника, диаграмма прецедентов, ER-диаграмма, диаграмма развертывания)
 - 14-15 неделя: защита, презентация по диаграммам, демонстрация приложения, ответы на вопросы 
 
+- [Регистрация в государственном реестре ПО](https://rospatent.gov.ru/ru/stateservices/gosudarstvennaya-registraciya-programmy-dlya-elektronnyh-vychislitelnyh-mashin-ili-bazy-dannyh-i-vydacha-svidetelstv-o-gosudarstvennoy-registracii-programmy-dlya-elektronnyh-vychislitelnyh-mashin-ili-bazy-dannyh-ih-dublikatov)
+
 ### Документация
 1. **Бэкенд**. ER диаграмма. Необходимо описать внутреннюю логику бэкенда с помощью sequence диаграммы. 
 2. **Фронтенд**: Диаграмма прецедентов. Необходимо описать внутреннюю логику фронтенда с помощью activity или sequence диаграммы. 
