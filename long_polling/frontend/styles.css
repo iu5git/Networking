@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, ol, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, serif;
+    background-color: #fcdde3;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.buttons__wrapper {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: cornflowerblue;
+    color: #fff;
+}
+
+.list {
+    font-size: 18px;
+    list-style-position: inside;
+}
+
+.list li {
+    margin-top: 10px;
+}
+
+.list li:first-child {
+    margin-top: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+
+.button:disabled {
+    cursor: default;
+    background-color: #99B1EEFF;
+}
+

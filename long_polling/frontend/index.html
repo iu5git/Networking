@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Пример long polling</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Список ответов от long polling запроса</h1>
+
+        <ol
+            id="list"
+            class="list"
+        >
+
+        </ol>
+
+        <div class="buttons__wrapper">
+            <button
+                id="start"
+                class="button"
+                onclick="startConnectToServer()"
+            >
+                Нажать соединение с сервером
+            </button>
+            <button
+                id="finish"
+                class="button"
+                onclick="finishConnectToServer()"
+                disabled
+            >
+                Закончить соединение с сервером
+            </button>
+        </div>
+    </div>
+
+    <script src="index.js" type="application/javascript"></script>
+</body>
+</html>
