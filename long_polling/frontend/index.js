@@ -19,7 +19,7 @@ const subscribe = async () => {
       node.innerHTML
         = `Данное сообщение с числом <span class="bold">${data.value}</span> было получено через <span class="bold">${data.timeout}с</span> после начала long polling запроса`
     } else if (response.status === 502) { // если время ожидания ответа превышено
-      node.innerText = 'Превышено время ожидания ответа от сервера (< 7с)';
+      node.innerText = 'Превышено время ожидания ответа от сервера (> 7с)';
     }
 
     // вставляем в список новый узел
