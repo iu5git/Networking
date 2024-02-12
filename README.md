@@ -79,7 +79,7 @@
 Для метода `Send` формирует json сообщение с указанием отправителя, времени отправки и полезной нагрузки - текста или файла. При получении нового сообщения методом `Receive` - json с указанием отправителя, времени отправки, признака ошибки и полезной нагрузки.
 
 - [Пример реализации](/frontend-template) фронтенда.
-- [Методические указания](https://github.com/iu5git/Web/blob/main/tutorials/lab1-design/README.md) по верстке и дизайну Figma.[Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI 
+- [Методические указания](https://github.com/iu5git/Web/blob/main/tutorials/lab1-design/README.md) по верстке и дизайну Figma. [Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI 
 - [Поэтапный пример](/websocket-example) табличного редактора через WebSocket. [Пример](/Websocket) мессенджера через WebSocket
 - [Обучающее видео по WebSocket, LongPolling, event sourcing](https://youtu.be/o43iiH4kGqg)
 
