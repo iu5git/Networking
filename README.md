@@ -100,8 +100,8 @@
 
 Сервис должен вносить ошибку с вероятностью P в передаваемую информацию и терять сообщения с вероятностью R. При декодировании либо пакет с ошибкой теряется, либо передается обратно на транспортный после исправления.
 
-- [Пример реализации веб-сервиса DRF](https://github.com/iu5git/web-2022/blob/main/tutorials/lab3-py/lab3_tutorial.md)
-- [Пример реализации веб-сервиса Golang](https://github.com/iu5git/web-2022/blob/main/tutorials/lab3-go/README.md)
+- [Пример реализации Циклического кода](https://github.com/DESOLATE17/NetworkingHomework)
+- [Пример реализации кода Хемминга](https://github.com/cantylv/homework-bmstu-2023-HammingCode)
 
 ## Варианты
 
