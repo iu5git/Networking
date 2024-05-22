@@ -90,7 +90,7 @@
 
 - [Ролик про межсервисное взаимодействие и очереди](https://www.youtube.com/watch?v=zdKziDsFjvg)
 - [Пример работы с очередями Kafka в Python](/kafka) 
-- [Пример установки Kafka через wsl и использования в Python](/kafka_wsl) 
+- [Транспортный уровень Kafka+Docker в Golang](/golang_kafka/) 
 
 #### Канальный уровень
 
