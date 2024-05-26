@@ -75,9 +75,8 @@
 
 Для метода `Send` формирует json сообщение с указанием отправителя, времени отправки и полезной нагрузки - текста или файла. При получении нового сообщения методом `Receive` - json с указанием отправителя, времени отправки, признака ошибки и полезной нагрузки.
 
-- [Пример реализации](/frontend-template) фронтенда.
+- [Прикладной уровень WebSocket по шагам](/web-socket-chat/) 
 - [Методические указания](https://github.com/iu5git/Web/blob/main/tutorials/lab1-design/README.md) по верстке и дизайну Figma. [Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI 
-- [Поэтапный пример](/websocket-example) табличного редактора через WebSocket. [Пример](/Websocket) мессенджера через WebSocket
 - [Обучающее видео по WebSocket, LongPolling, event sourcing](https://youtu.be/o43iiH4kGqg)
 
 #### Транспортный уровень
@@ -88,9 +87,10 @@
 
 Каждый пакет-сегмент представляет собой полезную нагрузку, времени отправки (как id сообщения), общую длину сообщения (количество сегментов), номер данного сегмента в сообщении.
 
-- [Ролик про межсервисное взаимодействие и очереди](https://www.youtube.com/watch?v=zdKziDsFjvg)
-- [Пример работы с очередями Kafka в Python](/kafka) 
 - [Транспортный уровень Kafka+Docker в Golang](/golang_kafka/) 
+- [Пример работы с очередями Kafka в Python](/kafka) 
+- [Ролик про межсервисное взаимодействие и очереди](https://www.youtube.com/watch?v=zdKziDsFjvg)
+
 
 #### Канальный уровень
 
@@ -307,7 +307,10 @@
 
 [Пример реализации](https://bmstu.codes/iu5/robo)
 
-
+## Дополнительные материалы
+- [Поэтапный пример](/websocket-example) табличного редактора через WebSocket
+- [Пример](/Websocket) мессенджера через WebSocket
+- [Пример реализации](/frontend-template) фронтенда.
 
 
 # Сети и Телекоммуникации
