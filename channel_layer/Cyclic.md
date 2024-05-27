@@ -78,6 +78,7 @@ static coding(bitStr) {
         }
 
         return res.slice(0, -3);
+    }
 ```
 Этот метод `decoding` принимает строку `bitStr`, проверяет, равен ли результат деления остатку "000"\. Если да, то возвращает часть строки до последних трех символов\. В противном случае, он выполняет циклический сдвиг влево и находит результат XOR между строкой и остатком\. Затем выполняется циклический сдвиг вправо и возвращается результат без последних трех символов\.
 
@@ -114,11 +115,11 @@ del(bitStr) {
 ```javascript
 const input1 = "1101";
 const encoded1 = Cycle.coding(input1);
-console.log(Encoded 1: ${encoded1});
+console.log("Encoded 1:", encoded1);
 
 const input2 = "101010";
 const encoded2 = Cycle.coding(input2);
-console.log(Encoded 2: ${encoded2});
+console.log("Encoded 2:", encoded2);
 ```
 Ожидаемые результаты:
 
@@ -287,7 +288,7 @@ function returnMyJSON(decryptedData){
 ```
 
 ## Запуск и тестирование Циклического кода
-Запустим app.js и проверим `post` запрос с помощью insomnia.
+Запустим app.js с помощью `node app.js` и проверим `post` запрос с помощью insomnia.
 ![Post-request](https://github.com/AlinaVorontsova/Seti/blob/main/%D0%A5%D1%8D%D0%BC%D0%BC%D0%B8%D0%BD%D0%B3_%D1%84%D0%BE%D1%82%D0%BE/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-03-28%20%D0%B2%2023.48.08%20(1).png?raw=true
 )
 

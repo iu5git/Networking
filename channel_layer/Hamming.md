@@ -16,7 +16,7 @@
 - вероятность потери кадра 2%.
 
 Начнем реализацию с создания библиотеки ham.js для работы кода Хэмминга.
-Создадим класс Hamming внутри которого будем описывать все необходимые функции.
+Создадим класс `Hamming` внутри которого будем описывать все необходимые функции.
 
 **Реализация функций**
 
@@ -31,7 +31,7 @@
 Пример реализации:
 		
 ```javascript
-	_calcRedundantBits(m) {
+    _calcRedundantBits(m) {
 	    for (let i = 0; i < m; i++) {
 	    	if (Math.pow(2, i) >= m + i + 1) {
     		    return i;
@@ -92,7 +92,7 @@
 ```JavaScript
 const data = "1011";
 const encodedData = Hamming.coding(data);
-console.log(Закодированные данные: ${encodedData});
+console.log("Закодированные данные:", encodedData);
 ```
 
 Когда вы выполните этот код, он должен закодировать строку "1011" с использованием кода Хэмминга и вывести результат. 
@@ -111,7 +111,6 @@ console.log(Закодированные данные: ${encodedData});
 
     ```JavaScript
         _detectError(arr) {
-    
             // Определяем кол-во контрольных битов в последовательности
             let nr = 0
             for (let i = 1; i < arr.length; i++)
@@ -245,32 +244,30 @@ console.log("Decoded Data:", decodedData);
 С помощью кода пропишем создание сервера на базе Express, который обрабатывает POST-запросы. Он предназначен для демонстрации работы с кодированием и декодированием данных с использованием кода Хэмминга, а также для имитации ошибок в закодированных данных. 
 
 ```JavaScript
-    const {Hamming} = require("./ham");  
-      
-    const SEGMENT_SIZE = 200  
-    const CHANCE_OF_ERROR = 0.1  
-      
-    const app = express();  
-    const sep = (xs, s) => xs.length ? [xs.slice(0, s), ...sep(xs.slice(s), s)] : []  
-      
-    app.use(bodyParser.json());  
-    app.use(bodyParser.urlencoded({ extended: true }));
-        app.post('/', async (req, res) => {  
-        try {  
-        // let json = circularJSON.stringify(req.body);  
-        const queueCoding = makeData(req.body) // закодированные данные  
-        console.log(queueCoding)  
-      
-    const queueMistake = makeMistake(queueCoding) // битые данные  
-    console.log(queueMistake)  
-      
-    const queueDecrypted = decodingData(queueMistake) // декодированные данные  
-    res.send(returnMyJSON(queueDecrypted));  
-    }  
-    catch(e) {  
-    console.log(e);  
-    res.send({ error: e.message });  
-    }  
+    const {Hamming} = require("./ham");
+
+    const SEGMENT_SIZE = 200
+    const CHANCE_OF_ERROR = 0.1
+
+    const app = express();
+    const sep = (xs, s) => xs.length ? [xs.slice(0, s), ...sep(xs.slice(s), s)] : []
+
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.post('/', async (req, res) => {
+       try {
+          const queueCoding = makeData(req.body) // закодированные данные  
+          console.log(queueCoding)
+    
+          const queueMistake = makeMistake(queueCoding) // битые данные  
+          console.log(queueMistake)
+    
+          const queueDecrypted = decodingData(queueMistake) // декодированные данные  
+          res.send(returnMyJSON(queueDecrypted));
+       } catch (e) {
+          console.log(e);
+          res.send({error: e.message});
+       }
     });
 ```
 
@@ -296,95 +293,92 @@ console.log("Decoded Data:", decodedData);
 Эта функция предназначена для подготовки данных к передаче. Она принимает исходные данные (data), кодирует их в бинарный формат с использованием кодирования Хэмминга, и разбивает на сегменты по 200 байт (или другое значение, заданное константой SEGMENT_SIZE).
 
 ```JavaScript
-    function makeData(data){  
-    const a = new TextEncoder().encode(JSON.stringify(data)) // переводим объект в байтовый массив  
-    let n = 0; // номер сегмента  
-    let cod = [''] // список сегментов по 200 байт  
-    // пройдем по всем байтам  
-    a.map((el, ind)=>{  
-    //cod[n] += MyHam.Hamming.coding("00000000".substr(el.toString(2).length) + el.toString(2)); // кодируем байт, переведенный в 2 код(с незначащими нулями)  
-      
-    let a_bit = sep("00000000".substr(el.toString(2).length) + el.toString(2), 4)  
-      
-    a_bit.map((el, ind)=>{  
-    a_bit[ind] = MyHam.Hamming.coding(el)  
-    })  
-    cod[n] += a_bit.join('')  
-      
-    if ((ind+1) % SEGMENT_SIZE === 0){ // разбиваем по 200 байт  
-    n++  
-    cod[n] = ''  
-    }  
-      
-    })  
-      
-    return sep(cod.join(''),7)  
-    }
+function makeData(data) {
+   const a = new TextEncoder().encode(JSON.stringify(data)) // переводим объект в байтовый массив  
+   let n = 0; // номер сегмента  
+   let cod = [''] // список сегментов по 200 байт  
+   // пройдем по всем байтам  
+   a.map((el, ind) => {
+      //cod[n] += MyHam.Hamming.coding("00000000".substr(el.toString(2).length) + el.toString(2)); // кодируем байт, переведенный в 2 код(с незначащими нулями)  
+
+      let a_bit = sep("00000000".substr(el.toString(2).length) + el.toString(2), 4)
+
+      a_bit.map((el, ind) => {
+         a_bit[ind] = MyHam.Hamming.coding(el)
+      })
+      cod[n] += a_bit.join('')
+
+      if ((ind + 1) % SEGMENT_SIZE === 0) { // разбиваем по 200 байт  
+         n++
+         cod[n] = ''
+      }
+
+   })
+
+   return sep(cod.join(''), 7)
+}
 ```
 
 **makeMistake(trueData)**
 
 Функция имитирует ошибки в закодированных данных. Она принимает на вход список закодированных сегментов (trueData) и для каждого сегмента с определенной вероятностью (задается константой CHANCE_OF_ERROR) вносит изменение в один случайно выбранный бит.
 ```JavaScript
-    function makeMistake(trueData){  
+function makeMistake(trueData){  
     const badData = []  
     trueData.map((el, index)=>{  
-    if (Math.random() < CHANCE_OF_ERROR) // шанс 10%, что ошибка  
-    {  
+    if (Math.random() < CHANCE_OF_ERROR) {  // шанс 10%, что ошибка 
     const rand_ind = Math.floor(Math.random() * el.length);  
     if (el[rand_ind] === '1')  
-    badData[index] = el.substring(0,rand_ind) + '0' + el.substring(rand_ind+1);  
+        badData[index] = el.substring(0,rand_ind) + '0' + el.substring(rand_ind+1);  
     else  
-    badData[index] = el.substring(0,rand_ind) + '1' + el.substring(rand_ind+1);  
-    }  
-    else  
-    badData[index] = el  
+        badData[index] = el.substring(0,rand_ind) + '1' + el.substring(rand_ind+1);  
+    } else  
+        badData[index] = el  
     })  
     return badData  
-    }
+}
 ```
 
 **decodingData(badData)**
 
 Эта функция занимается декодированием данных, исправляя возможные ошибки. Она принимает на вход список сегментов данных (badData), которые могут содержать ошибки, и для каждого сегмента выполняет декодирование с исправлением ошибок с помощью алгоритма Хэмминга.
 ```JavaScript
-    function decodingData(badData){  
-    const trueData = []  
-      
-    badData.map((el, ind) =>{  
-    trueData[ind] = Hamming.decoding(el) // декодировка и исправление ошибки если она есть  
-    })  
-    return trueData  
-    }
-
-**returnMyJSON(decryptedData)**
+function decodingData(badData) {
+   const trueData = []
+   badData.map((el, ind) => {
+      trueData[ind] = Hamming.decoding(el) // декодировка и исправление ошибки если она есть  
+   })
+   
+   return trueData
+}
 ```
+**returnMyJSON(decryptedData)**
 
 После декодирования и исправления ошибок в данных, эта функция преобразует декодированные бинарные данные обратно в исходный формат. Она принимает на вход список байтов (decryptedData), преобразует их из бинарного формата обратно в текстовую строку JSON, а затем парсит эту строку в объект JavaScript.
 ```JavaScript
-
-    function returnMyJSON(decryptedData){  
-    const binByte = sep(decryptedData.join(''), 8) // список байтов в 2 коде  
-    const bytesList = []  
-    let textDecoder = new TextDecoder();  
-    binByte.map((el, ind)=>{  
-    bytesList.push(parseInt(el, 2));  
-    })  
-    return textDecoder.decode(new Uint8Array(bytesList))  
-    }
+function returnMyJSON(decryptedData) {
+   const binByte = sep(decryptedData.join(''), 8) // список байтов в 2 коде  
+   const bytesList = []
+   let textDecoder = new TextDecoder();
+   binByte.map((el, ind) => {
+      bytesList.push(parseInt(el, 2));
+   })
+   
+   return textDecoder.decode(new Uint8Array(bytesList))
+}
 ```
   
 Для корректной работы всей программы необходимо также указать номер порта для прослушивания, например:
 ```JavaScript
-
     app.listen(3050, () => {  
     console.log(`Server initialized. Try it on http://localhost:${3050}`);  
     })
+
    Порт прослушивания может быть `3050`
 ```
 
 ## Запуск и тестирование кода Хэмминга
-Запустим app.js и проверим `post` запрос с помощью insomnia.
+Запустим app.js с помощью `node app.js` и проверим `post` запрос с помощью insomnia.
 ![Post-request](https://github.com/AlinaVorontsova/Seti/blob/main/%D0%A5%D1%8D%D0%BC%D0%BC%D0%B8%D0%BD%D0%B3_%D1%84%D0%BE%D1%82%D0%BE/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-03-28%20%D0%B2%2023.48.08%20(1).png?raw=true
 )
 
