@@ -123,6 +123,30 @@ export default App;
 }
 ```
 
+Импортируем стили в src/index.css. По ходу дела будем дописывать стили в разные файлы, поэтому не забывайте их
+импортировать сюда) Ведь index.html импортит именно этот файл.
+
+И еще пропишем стили для body и root
+
+**src/index.css**
+
+```css
+@import "App.css";
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+```
+
 **src/index.tsx**
 
 ```typescript jsx
@@ -481,7 +505,7 @@ wss.on('connection', (websocketConnection: WebSocket, req: Request) => {
     }
   } else {
     console.log('[open] Connected')
-  } 
+  }
 
   // обработчик на закрытие
   websocketConnection.on('close', (event: any) => {
@@ -524,7 +548,7 @@ wss.on('connection', (websocketConnection: WebSocket, req: Request) => {
   - Input.css
   - Input.tsx
 
-Chat - наша основная страница. А компонент Input будет отвечать за инпут-поле, в которое пользователь будет писать 
+Chat - наша основная страница. А компонент Input будет отвечать за инпут-поле, в которое пользователь будет писать
 сообщения. Считается хорошей практикой делить приложение на компоненты, которые должны отвечать за определенный функционал.
 Например наш Input будет отвечать за ввод сообщений, а в будущем мы добавим компонент MessageCard, который будет представлять
 собой карточку с сообщением пользователя.
@@ -664,7 +688,21 @@ export const Input = () => {
 }
 ```
 
-Для того, чтобы при перезагрузке пользователя не разлогинивало, можем воспользоваться Redux с персистентным 
+в папке src создадим файл consts.ts - здесь будут константы и модельки
+
+```typescript
+export const hostname = 'localhost';
+
+export type Message = {
+  id?: number;
+  username?: string;
+  data?: string;
+  send_time?: string;
+  error?: string;
+};
+```
+
+Для того, чтобы при перезагрузке пользователя не разлогинивало, можем воспользоваться Redux с персистентным
 хранилищем - данные о пользователе будут храниться в localStorage и не чиститься после перезагрузки.
 
 Установим redux-toolkit: `npm install @reduxjs/toolkit react-redux redux-persist`
@@ -705,7 +743,7 @@ const rootReducer = combineReducers({
 // создаем редьюсера
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// конфигурирем стор 
+// конфигурирем стор
 export const store = configureStore({
   reducer: persistedReducer,
 
@@ -733,29 +771,29 @@ export type AppDispatch = typeof store.dispatch;
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  login: '',  // все что нужно знать о пользователе - его логин 
+  login: '',  // все что нужно знать о пользователе - его логин
 };
 
 const dataSlice = createSlice({
   name: 'user',
-  initialState: { 
-    Data: initialState 
+  initialState: {
+    Data: initialState
   },
-  
+
   reducers: {
     setData(state, { payload }) {
       state.Data = payload.Data;  // будем сеттить юзера при логине
     },
-    
+
     cleanUser: (state) => {
       state.Data.login = '';  // чистим логин юзера когда он выйдет
     },
   },
 });
 
-export const { 
-  setData: setUserDataAction, 
-  cleanUser: cleanUserDataAction 
+export const {
+  setData: setUserDataAction,
+  cleanUser: cleanUserDataAction
 } = dataSlice.actions;
 
 export default dataSlice.reducer;
@@ -783,9 +821,9 @@ type State = {
 
 export const useUser = () => {
   const { Data } = useSelector((state: RootState) => state.user);
-  
+
   const { login } = Data; // возьмем у юзера логин
-  
+
   const dispatch = useDispatch();
 
   const setUser = (value: State) => { // метод для загрузки логина юзера в стор
@@ -865,7 +903,7 @@ export const Login: React.FC<LoginProps> = ({ws, setWs, createWebSocket}) => {
     }
     setWs(
       createWebSocket(
-        `ws://${hostname}:8081/?username=${encodeURIComponent(userName)}`,
+        `ws://${hostname}:8001/?username=${encodeURIComponent(userName)}`,
       ),
     );
   };
@@ -894,43 +932,6 @@ export const Login: React.FC<LoginProps> = ({ws, setWs, createWebSocket}) => {
   );
 }
 ```
-
-Давайте проверим, что при логине у пользователя открывается вебсокет-соединение и он добавляется в коллекцию 
-пользователей на сервере:
-
-![](assets/img_7.png)
-![](assets/img_8.png)
-![](assets/img_9.png)
-![](assets/img_10.png)
-![](assets/img_11.png)
-
----
-
-### Функционал чата
-
-Осталось сделать отправку и получение сообщений. Займемся их отрисовкой на фронте
-
-в папке src создадим файл consts.ts - здесь будут константы и модельки
-
-```typescript
-export const hostname = 'localhost';
-
-export type Message = {
-  id?: number;
-  username?: string;
-  data?: string;
-  send_time?: string;
-  error?: string;
-};
-```
-
-Внутри src/components/ создадим папку и файлы для карточки сообщения:
-
-- MessageCard
-  - MessageCard.css
-  - MessageCard.tsx
-
-В приложении будут два компонента, отвечающие за страницы - Login и Chat.
 
 **App.tsx**
 
@@ -968,8 +969,8 @@ function App() {
     ws.onopen = function () {
       console.log('WebSocket connection opened');
     };
-    
-    // обработчик на получение сообщения 
+
+    // обработчик на получение сообщения
     ws.onmessage = function (event) {
       const msgString = event.data;
       const message = JSON.parse(msgString); // парсим
@@ -979,7 +980,7 @@ function App() {
       // сеттим сообщение в массив
       setMessageArray((currentMsgArray: Message[]) => [...currentMsgArray, message]);
     };
-
+hooks
     // обработчик на закрытие
     ws.onclose = function () {
       console.log('WebSocket connection closed');
@@ -1010,20 +1011,28 @@ function App() {
 export default App;
 ```
 
-Добавим немного стилей:
+Давайте проверим, что при логине у пользователя открывается вебсокет-соединение и он добавляется в коллекцию
+пользователей на сервере:
 
-**App.css**
+![](assets/img_7.png)
+![](assets/img_8.png)
+![](assets/img_9.png)
+![](assets/img_10.png)
+![](assets/img_11.png)
 
-```css
-.App {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  background-color: #19191A;
-  color: white;
-  height: 100%;
-}
-```
+---
+
+### Функционал чата
+
+Осталось сделать отправку и получение сообщений. Займемся их отрисовкой на фронте
+
+Внутри src/components/ создадим папку и файлы для карточки сообщения:
+
+- MessageCard
+  - MessageCard.css
+  - MessageCard.tsx
+
+В приложении будут два компонента, отвечающие за страницы - Login и Chat.
 
 В чате добавим карточки сообщений.
 
@@ -1100,7 +1109,7 @@ export const Chat: React.FC<ChatProps> = ({messages, ws, messageArray, setMessag
 В карточке будем отображать информацию о сообщении - имя пользователя, дату отправки сообщения и само сообщение.
 В зависимости от того, отправил ли наш пользователь сообщение или же другой, будем менять стили карточки.
 Для нашего пользователя будет голубой фон, и сообщение будет находиться справа. Если же это сообщение от другого пользователя,
-фон будет серым, а сообщение будет находиться слева. 
+фон будет серым, а сообщение будет находиться слева.
 
 **MessageCard.tsx**
 
@@ -1116,7 +1125,7 @@ type MessageProps = {
 export const MessageCard: React.FC<MessageProps> = ({msg}) => {
   const {login} = useUser();
 
-  // функция для форматирования времени, чтобы оно красиво отображалось 
+  // функция для форматирования времени, чтобы оно красиво отображалось
   function formatTime(isoDateTime: string | number | Date) {
     const dateTime = new Date(isoDateTime);
     return dateTime.toLocaleString('en-US', {
@@ -1237,7 +1246,7 @@ export const Input: React.FC<InputProps> = ({ws, setMessageArray}) => {
     setMessage(newMsg);
   };
 
-  // на кнопку Отправить мы должны посать сообщение по вебсокету 
+  // на кнопку Отправить мы должны посать сообщение по вебсокету
   const handleClickSendMessBtn = () => {
     if (login && ws) {
       message.send_time = '2024-02-23T13:45:41Z';
@@ -1532,8 +1541,8 @@ wss.on('connection', (websocketConnection: WebSocket, req: Request) => {
 
 ![](assets/img_14.png)
 
-Получилось! Поздравляю, мы с вами освоили вебсокеты и сделали простой чат, к которому можно подключаться и отправлять 
-сообщения всем пользователям в чате.  
+Получилось! Поздравляю, мы с вами освоили вебсокеты и сделали простой чат, к которому можно подключаться и отправлять
+сообщения всем пользователям в чате.
 
 ---
 
