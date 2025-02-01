@@ -79,8 +79,7 @@
 
 Для метода `Send` формирует json сообщение с указанием отправителя, времени отправки и полезной нагрузки - текста или файла. При получении нового сообщения методом `Receive` - json с указанием отправителя, времени отправки, признака ошибки и полезной нагрузки.
 
-- [Прикладной уровень WebSocket по шагам](/web-socket-chat/) 
-- [Мастер-класс](https://vk.com/video-211704031_456239165) WebSocket по шагам
+- [Прикладной уровень WebSocket](/web-socket-chat/) по шагам. [Мастер-класс](https://vk.com/video-211704031_456239165) WebSocket по шагам
 - [Методические указания](https://github.com/iu5git/Web/blob/main/tutorials/lab1-design/README.md) по верстке и дизайну Figma. [Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI 
 - [Обучающее видео по WebSocket, LongPolling, event sourcing](https://youtu.be/o43iiH4kGqg)
 
@@ -92,8 +91,7 @@
 
 Каждый пакет-сегмент представляет собой полезную нагрузку, времени отправки (как id сообщения), общую длину сообщения (количество сегментов), номер данного сегмента в сообщении.
 
-- [Транспортный уровень Kafka+Docker в Golang](/golang_kafka/) 
-- [Мастер-класс](https://vk.com/video-211704031_456239164) Kafka Golang
+- [Транспортный уровень Kafka+Docker](/golang_kafka/) в Golang. [Мастер-класс](https://vk.com/video-211704031_456239164) Kafka Golang
 - [Пример работы с очередями Kafka в Python](/kafka) 
 - [Ролик про межсервисное взаимодействие и очереди](https://www.youtube.com/watch?v=zdKziDsFjvg)
 
