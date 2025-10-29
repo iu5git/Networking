@@ -67,14 +67,15 @@ static coding(bitStr) {
 
         while (d > 1 && iter <= 7) {
             iter++;
-            bitStr = bitStr.slice(-1) + bitStr.slice(0, -1); // Циклический сдвиг на один бит влево
+            bitStr = bitStr.slice(1) + bitStr.charAt(0); // Циклический сдвиг на один бит влево
             d = parseInt(this.prototype.del(bitStr), 2);
         }
 
         let res = (parseInt(bitStr, 2) ^ d).toString(2);
+        res = res.padStart(7, "0"); // Добавляем ведущие нули слева
 
-        for (let i = 0; i < iter; i++) {
-            res = res.slice(1) + res.charAt(0); // Циклический сдвиг на один бит вправо
+        if (iter > 0) {
+            res = res.slice(-iter) + res.slice(0, -iter); // Циклический сдвиг на iter бит вправо
         }
 
         return res.slice(0, -3);
