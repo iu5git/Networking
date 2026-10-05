@@ -81,6 +81,8 @@
 
 Для метода `Send` формирует json сообщение с указанием отправителя, времени отправки и полезной нагрузки - текста или файла. При получении нового сообщения методом `Receive` - json с указанием отправителя, времени отправки, признака ошибки и полезной нагрузки.
 
+На оценку Отлично требуется заменить `WebSocket` на `Server Send Events`
+
 - [Прикладной уровень WebSocket](/web-socket-chat/) по шагам. [Мастер-класс](https://vk.com/video-211704031_456239165) WebSocket по шагам
 - [Методические указания](https://github.com/iu5git/Web/blob/main/tutorials/lab1-design/README.md) по верстке и дизайну Figma. [Инструкция](https://github.com/iu5git/Standards/blob/main/docs/Tutorial_MUI.pdf) по Figma MUI 
 
